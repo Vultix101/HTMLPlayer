@@ -17,9 +17,18 @@
     </style>
 </head>
 <body>
+    
+
     <audio src="" controls id="audioPlayer">
         Your browser is wack lol
     </audio>
+
+    <!-- sets intial volume to 0.6 -->
+    <script>
+        var audio = document.getElementById("audioPlayer"); 
+        audio.volume = 0.6
+    </script>
+
     <ul id="playlist">
         <li class ="current-song"><a href="https://docs.google.com/uc?export=open&id=1jAmqbeMbLPuQy8jHFL_FnGEmF_RuSceZ">Memories</a></li>
     </ul>
