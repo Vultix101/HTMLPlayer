@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <title>Pixelamp</title>
     <style>  
+
+
+
+	body{
+	margin-bottom: 50%;
+	background-image: url('https://i0.wp.com/3minute.club/wp-content/uploads/2016/08/Yellow-background.png?ssl=1');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+	}
+	::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	}
+
+::-webkit-scrollbar-track {
+border: 1px blue;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: blue;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #3399cc;  
+}
         #playlist{
             list-style: none;
         }
@@ -18,10 +46,11 @@
 </head>
 <body>
     
-
+    <div align="center">
     <audio src="" controls id="audioPlayer">
         Your browser is wack lol
     </audio>
+    </div>
 
     <!-- sets intial volume to 0.6 -->
     <script>
@@ -29,36 +58,27 @@
         audio.volume = 0.3
     </script>
 
+    <center>
+    <a href="#" onclick="playlist.prevTrack();">Prev Track</a>
+    <a href="#" onclick="playlist.nextTrack();">Next Track</a>
+    <a href="#" onclick="playlist.toggleShuffle();">Toggle Shuffle</a>
+    </center>
+
     <ul id="playlist">
-        <li class ="current-song"><a href="https://docs.google.com/uc?export=open&id=1jAmqbeMbLPuQy8jHFL_FnGEmF_RuSceZ">Memories</a></li>
+        <li><a href="https://docs.google.com/uc?export=open&id=1jAmqbeMbLPuQy8jHFL_FnGEmF_RuSceZ">Memories</a></li>
 	<li><a href="https://docs.google.com/uc?export=open&id=1d7G9ye2ehcuXLzguD5hVux3_sKRpI8FT">Instincts</a></li>
     </ul>
+	
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
-    <script src="audioPlayer.js"></script>
+    <script src="index.js"></script>
     <script>
-        audioPlayer();
-		  function audioPlayer(){
-            var currentSong = 0;
-            $("#audioPlayer")[0].src = $("#playlist li a")[0];
-            $("#playlist li a").click(function(e){
-               e.preventDefault(); 
-               $("#audioPlayer")[0].src = this;
-               $("#audioPlayer")[0].play();
-               $("#playlist li").removeClass("current-song");
-                currentSong = $(this).parent().index();
-                $(this).parent().addClass("current-song");
-            });
-            
-            $("#audioPlayer")[0].addEventListener("ended", function(){
-               currentSong++;
-                if(currentSong == $("#playlist li a").length)
-                    currentSong = 0;
-                $("#playlist li").removeClass("current-song");
-                $("#playlist li:eq("+currentSong+")").addClass("current-song");
-                $("#audioPlayer")[0].src = $("#playlist li a")[currentSong].href;
-                $("#audioPlayer")[0].play();
-            });
-        }
+	var config = {
+          autoplay: true, 
+            loop: true,
+            shuffle: true
+        };
+        var playlist = new AudioPlaylist();
+        
     </script>
 </body>
 </html>
