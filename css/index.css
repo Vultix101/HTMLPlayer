@@ -1,3 +1,93 @@
-html {
-	color: blue;
+	#songtitle {
+	color:yellow;
+}
+
+hr {
+   margin:3px;
+   width: 99.7%;
+   border-bottom: 0px solid white;	
+   position: relative;	
+}
+
+
+.box 
+{
+	border-radius: 15px;
+	opacity:0.95;
+	height: 99%;
+	width: 99%;
+	overflow:auto;
+	background-color:#001932;
+	color:white;
+	scrollbar-base-color:gold;
+	font-family:sans-serif;
+	padding:10px;
+}
+
+
+.box li {
+	border-top: 1px solid grey; padding:5px; margin-top:15px; 
+	opacity 0.9;
+	margin:3px;
+}
+
+.box ul {
+	position: relative;
+}
+.box ul li 
+{
+	list-style: none;
+	width: 97%;
+	margin-left:3px;
+}
+.box ul li:hover {
+	background: #3399cc;
+}
+body{
+	background-image: url('https://i.imgur.com/KdIZxSQ.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+	}
+	::-webkit-scrollbar {
+	width: 6px;
+	height: 3px;
+	}
+	 
+.btn {
+  	background-color: DodgerBlue;
+  	border: none;
+  	color: white;
+  	padding: 12px 16px;
+  	font-size: 16px;
+  	cursor: pointer;
+  	border-radius: 5px;
+}
+
+.btn:hover {
+  	background-color: RoyalBlue;
+}
+
+::-webkit-scrollbar-track {
+	border: 1px blue;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: yellow;  
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #3399cc;  
+}
+#playlist{
+	list-style: none;
+}
+#playlist li a{
+	color:white;
+	text-decoration: none;
+}
+#playlist .current-song a{
+	color:yellow;
 }
