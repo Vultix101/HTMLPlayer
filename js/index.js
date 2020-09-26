@@ -29,13 +29,18 @@ class AudioPlaylist{
         }
         return this.trackOrder;
     }
+
     setTrack(arrayPos){
-    
         var liPos = this.trackOrder[arrayPos]; // convert array index to html index
         this.player.src = $("#"+this.playlistId+ " li a").eq(liPos).attr("href");
         $("."+this.currentClass).removeClass(this.currentClass);
         $("#"+this.playlistId+ " li").eq(liPos).addClass(this.currentClass);
         this.trackPos = arrayPos; // update based on array index position
+        this.setSongTitle();
+    }
+    setSongTitle(){
+        var x = document.getElementById("songtitle");
+        x.textContent = document.getElementsByClassName("current-song")[0].textContent;
     }
     prevTrack(){
         if(this.trackPos == 0)
@@ -43,6 +48,12 @@ class AudioPlaylist{
         else
             this.setTrack(this.trackPos - 1);
         this.player.play();
+    }
+    playTrack(){
+	    this.player.play();
+    }
+    pauseTrack(){
+	    this.player.pause();
     }
     nextTrack(){
         // if track isn't the last track in array of tracks, go to next track
@@ -108,6 +119,7 @@ class AudioPlaylist{
         */
         
         var classObj = this; // store scope for event listeners
+	var num = 0;
         this.shuffle = (config.shuffle === true) ? true : false;
         this.playerId = (config.playerId) ? config.playerId : "audioPlayer";
         this.playlistId = (config.playlistId) ? config.playlistId : "playlist";
@@ -118,16 +130,20 @@ class AudioPlaylist{
         this.loop = (config.loop === true) ? true : false;
         this.trackPos = 0;
         this.trackOrder = [];
+       
         for(var i = 0; i < this.length; i++){
             this.trackOrder.push(i);
         }
         
         if(this.shuffle)
             this.randomizeOrder();
-        
+            
+
         this.setTrack(this.trackPos);
         if(this.autoplay)
             this.player.play();
+        
+
         
          /***
         *
@@ -139,6 +155,7 @@ class AudioPlaylist{
             // set track based on index of 
             classObj.setTrack(classObj.trackOrder.indexOf($(this).parent().index()));
             classObj.player.play();
+            
         });
         
          /***
@@ -152,6 +169,7 @@ class AudioPlaylist{
             if(classObj.trackPos < classObj.length - 1){
                 classObj.setTrack(classObj.trackPos+1);
                 classObj.player.play();
+                
             }
             else{
                 if(classObj.loop){
@@ -159,6 +177,7 @@ class AudioPlaylist{
                         classObj.randomizeOrder();
                     classObj.setTrack(0);
                     classObj.player.play();
+                    
                 }
             }
         });
