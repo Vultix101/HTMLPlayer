@@ -52,16 +52,13 @@
             </ul>   
         </div>
 
-        <hr>
+             
 
-    <center> 
-        <div id ="songtitle">
-            Placeholder
-        </div>
-    </center> 
-
+        <center><input type= "range" class = "slider" id = "slider" value = "30" maxlength ="100">
+        </center>
         
-    <hr>
+        
+
         <center>
             <div align="center">
                 <audio src="" controls id="audioPlayer">
@@ -76,13 +73,22 @@
             <button class="btn"><a href"#" onclick="playlist.nextTrack();"><i class="fa fa-forward"></i></button>
             <button class="btn"><a href"#" onclick="playlist.toggleShuffle();"><i class="fa fa-random"></i></button>
         </center>
-
+        
+        
         
         <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
         <script src="js/index.js"></script>
         <script>
+
             var audio = document.getElementById("audioPlayer"); 
-            audio.volume = 0.2
+            audio.volume = 0.3
+            
+            slider.oninput = () => {
+            console.log("Volume set to", ~~(slider.value))
+            var audio = document.getElementById("audioPlayer");
+            audio.volume = ~~(slider.value) * 0.01
+            }
+        
 
             var config = {
                 autoplay: true, 
