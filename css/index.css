@@ -9,6 +9,9 @@ hr {
    position: relative;	
    opacity: 0%;
 }
+#audioPlayer {
+	display:none
+}
 
 
 .box 
